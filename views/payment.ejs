@@ -1,0 +1,120 @@
+<html>
+<head>
+  <title>Demo Developers SCB | <%= title %></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="./">Demo Developers SCB</a>
+            <ul class="nav navbar-nav">
+            <li>
+                <a href="./">Home</a>
+            </li>
+            <li>
+                <a href="./authorize">Authorize</a>
+            </li>
+            <li>
+                <a href="./token">Token</a>
+            </li>
+            <li class="active">
+                <a href="./payment">Payment</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <strong>Payment APIs!</strong> This API using for payment then return transactionId, deeplinkUrl, userRefId. <a href="https://developer.scb/#/documents/api-reference-index/payment/post-deeplink-transaction.html" class="alert-link" target="_blank">Payment APIs docs</a>
+            <br/>Require <strong>Application Key</strong>, <strong>Access Token,</strong>
+            <strong>Payment Amount, Transaction Type, Transaction Sub Type, Account To, Account From and other</strong>.
+        </div>
+
+        <% if(statusCode == 1000){ %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+                Transaction Id: <strong><%= data.transactionId%></strong><br/>
+                Deeplink URL: <strong><%= data.deeplinkUrl %></strong><br/>
+                User Ref Id: <strong><%= data.userRefId %></strong><br/>
+        </div>
+        <% } %>
+        <% if(statusCode == 9500){ %>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+            </div>
+        <% } %>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <form action="./payment" method="POST">
+                <div class="form-group">
+                    <label for="apikey">Input your application key</label>
+                    <input type="text" class="form-control" id="apikey" name="apikey">
+                </div>
+                <div class="form-group">
+                    <label for="accesstoken">Input your access token (Without Bearer)</label>
+                    <input type="text" class="form-control" id="accesstoken" name="accesstoken">
+                </div>
+                <div class="form-group">
+                    <label for="paymentAmount">Input your payment amount (2 digits)</label>
+                    <input type="text" class="form-control" id="paymentAmount" name="paymentAmount" placeholder="100.00">
+                </div>
+                <div class="form-group">
+                    <label for="transactionType">Input your transaction type</label>
+                    <input type="text" class="form-control" id="transactionType" name="transactionType" placeholder="PAYMENT">
+                </div>
+                <div class="form-group">
+                    <label for="accountTo">Input account to</label>
+                    <input type="text" class="form-control" id="accountTo" name="accountTo" placeholder="1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="accountFrom">Input account form</label>
+                    <input type="text" class="form-control" id="accountFrom" name="accountFrom" placeholder="0987654321">
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+
+        <div class="well">curl -X POST \
+            https://api.scb.co.th/partners/sandbox/v2/deeplink/transactions \
+            -H 'Content-Type: application/json' \
+            -H 'accept-language: EN' \
+            -H 'authorization: Bearer <Your Access Token>' \
+            -H 'channel: scbeasy' \
+            -H 'requestUId: d7e992f3-c9f1-4071-8a4a-6c5839c8d317' \
+            -H 'resourceOwnerId: <Your API Key>' \
+            -d '{
+              "paymentAmount": 100.00,
+              "transactionType": "PAYMENT",
+              "transactionSubType": "BPA",
+              "ref1": "2003002913251522",
+              "accountTo": "900242300232",
+              "merchantMetaData": {
+                  "paymentInfo": [{
+                  "type": "<TEXT, TEXT_WITH_IMAGE>",
+                  "title": "<Title text>",
+                  "header": "<Header text>",
+                  "description": "<Description>",
+                  "imageUrl": "<Image url require if type TEXT_WITH_IMAGE>"
+                }],
+                "analytics": {
+                  "Product category": "<Product category>",
+                  "Partner": "<Name of partner>",
+                  "Product code": "<Product code>",
+                  "Detail1": "<Product name>",
+                  "Detail2": "<sub-product name(if any)>",
+                  "Detail3": "<sub-product name(if any)>",
+                  "Detail4": "<date format: YYYY-MM-DD to YYYY-MM-DD>",
+                  "Detail5": "<sub-product name(if any)>",
+                  "Detail6": "<Number of items, packages, etc.>"
+                }
+              }
+            }
+        </div>
+    </div>
+    
+</body>
+</html>

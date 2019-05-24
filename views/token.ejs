@@ -1,0 +1,79 @@
+<html>
+<head>
+  <title>Demo Developers SCB | <%= title %></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="./">Demo Developers SCB</a>
+            <ul class="nav navbar-nav">
+            <li>
+                <a href="./">Home</a>
+            </li>
+            <li>
+                <a href="./authorize">Authorize</a>
+            </li>
+            <li class="active">
+                <a href="./token">Token</a>
+            </li>
+            <li>
+                <a href="./payment">Payment</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <strong>Request Access Token!</strong> This API using for get access token. <a href="https://developer.scb/#/documents/api-reference-index/authentication/post-oauth-token.html" class="alert-link" target="_blank">Access Token docs</a>
+            <br/>Require <strong>application key</strong> and <strong>application secret.</strong>
+            <br/>This API depending on the category of APIs, either <strong>2-Legged (Client Credentials)</strong> or <strong>3-Legged (Authorization Code Grant)</strong> OAuth secures these APIs.
+        </div>
+
+        <% if(statusCode == 1000){ %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+                Access Token: <strong><%= data.tokenType%> <%= data.accessToken %></strong><br/>
+                Expires Id: <strong><%= data.expiresIn %></strong> Expires At: <strong><%= data.expiresAt %></strong><br/>
+        </div>
+        <% } %>
+        <% if(statusCode == 9500){ %>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+            </div>
+        <% } %>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <form action="./token" method="POST">
+                <div class="form-group">
+                    <label for="apikey">Input your application key</label>
+                    <input type="text" class="form-control" id="apikey" name="apikey">
+                </div>
+                <div class="form-group">
+                    <label for="apisecret">Input your application secret</label>
+                    <input type="text" class="form-control" id="apisecret" name="apisecret">
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+
+        <div class="well">curl -X POST \
+            https://api.scb.co.th/partners/sandbox/v1/oauth/token \
+            -H 'Content-Type: application/json' \
+            -H 'accept-language: EN' \
+            -H 'requestUId: 85230887-e643-4fa4-84b2-4e56709c4ac4' \
+            -H 'resourceOwnerId: <Your API Key>' \
+            -d '{
+                "applicationKey" : "<Your API Key>",
+                "applicationSecret" : "<Your API Secret>",
+                "authCode" : "<Authorization Code>"
+            }'
+        </div>
+    </div>
+    
+</body>
+</html>

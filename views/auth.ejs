@@ -1,0 +1,88 @@
+<html>
+<head>
+  <title>Demo Developers SCB | <%= title %></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="./">Demo Developers SCB</a>
+            <ul class="nav navbar-nav">
+            <li>
+                <a href="./">Home</a>
+            </li>
+            <li class="active">
+                <a href="./authorize">Authorize</a>
+            </li>
+            <li>
+                <a href="./token">Token</a>
+            </li>
+            <li>
+                <a href="./payment">Payment</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <strong>Request Authorize!</strong> This API using for get authentication code. <a href="https://developer.scb/#/documents/api-reference-index/authentication/get-oauth-authorize.v2.html" class="alert-link" target="_blank">Authorize docs</a>
+            <br/>Require <strong>application key</strong> and <strong>application secret.</strong>
+        </div>
+
+        <% if(statusCode == 1000){ %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+                callbackUrl: <strong><%= data %></strong>
+        </div>
+        <% } %>
+        <% if(statusCode == 9500){ %>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                Status code: <strong><%= statusCode %></strong> Status description: <strong><%= statusDescription %></strong><br/>
+            </div>
+        <% } %>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <form action="./authorize" method="POST">
+                <div class="form-group">
+                    <label for="apikey">Input your application key</label>
+                    <input type="text" class="form-control" id="apikey" name="apikey">
+                </div>
+                <div class="form-group">
+                    <label for="apisecret">Input your application secret</label>
+                    <input type="text" class="form-control" id="apisecret" name="apisecret">
+                </div>
+                <div class="form-group">
+                    <label for="response-channel">Response channel</label>
+                    <input type="text" class="form-control" id="response-channel" name="response-channel" disabled=true value="mobile">
+                </div>
+                <div class="form-group">
+                    <label for="endState">End state</label>
+                    <input type="text" class="form-control" id="endState" name="endState" disabled=true value="desktop_web">
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+
+        <div class="well">curl -X GET \
+                https://api.scb.co.th/partners/sandbox/v2/oauth/authorize \
+                -H 'Accept: */*' \
+                -H 'Cache-Control: no-cache' \
+                -H 'Connection: keep-alive' \
+                -H 'Host: api.scb.co.th' \
+                -H 'accept-language: EN' \
+                -H 'apikey: <your api key>' \
+                -H 'apisecret: <your api secret>' \
+                -H 'cache-control: no-cache' \
+                -H 'endState: desktop_web' \
+                -H 'requestUId: 1' \
+                -H 'resourceOwnerId: 1' \
+                -H 'response-channel: mobile'
+        </div>
+    </div>
+    
+</body>
+</html>
