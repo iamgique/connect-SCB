@@ -1,0 +1,20 @@
+{
+  "name": "developersscb",
+  "version": "1.0.0",
+  "description": "developerSCB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sakul Montha",
+  "license": "ISC",
+  "dependencies": {
+    "aws-serverless-express": "^3.3.6",
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "claudia-api-builder": "^4.1.2",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "path": "^0.12.7"
+  }
+}
