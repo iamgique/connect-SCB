@@ -33,7 +33,11 @@ claudia update
 
 ### Example image
 ![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/1.png?raw=true)
+
 ![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/2.png?raw=true)
-![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/3.png?raw=true)
-![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/4.png?raw=true)
-![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/5.png?raw=true)
+
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/3.PNG?raw=true)
+
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/4.PNG?raw=true)
+
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/5.PNG?raw=true)
