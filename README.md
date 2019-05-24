@@ -32,8 +32,8 @@ claudia update
 [demo web application](https://mh06j2odyk.execute-api.ap-southeast-1.amazonaws.com/latest/). 
 
 ### Example image
-![alt text]()
-![alt text]()
-![alt text]()
-![alt text]()
-![alt text]()
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/1.png?raw=true)
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/2.png?raw=true)
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/3.png?raw=true)
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/4.png?raw=true)
+![alt text](https://github.com/iamgique/connect-SCB/blob/master/public/images/5.png?raw=true)
