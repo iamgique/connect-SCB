@@ -1,7 +1,9 @@
 # connect-SCB
-A demo application connected to SCB APIs
+A demo web application connected to SCB APIs
 
-Currently, You can generate "authorization code" by "client credentials" grant type, generate "access token" by API Keys and API Secret, And you can try to pay with "api payment" by using access token.
+Currently, You can generate "authorization code", you can generate "access token" with 2-Legged "client credentials" grant type by using API Keys and API Secret, and you can try to pay with "API Payment" by using access token.
+
+You can read about an API document that they provided at [developers.scb](https://developer.scb/#/documents). 
 
 ## Tech Stack
 Nodejs, Express, EJS, axios, body-parser
@@ -25,3 +27,13 @@ claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1
 ```
 claudia update
 ```
+
+### App live demo
+[demo web application](https://mh06j2odyk.execute-api.ap-southeast-1.amazonaws.com/latest/). 
+
+### Example image
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
